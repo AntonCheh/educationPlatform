@@ -18,7 +18,7 @@ public class Model {
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 
         Session session = sessionFactory.openSession();
-        Course courses = session.find(Course.class, 1); // Используйте find вместо get
+        Course courses = session.find(Course.class, 1);
         System.out.println(courses.getName());
 
         session.close();
