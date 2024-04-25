@@ -11,6 +11,7 @@ import java.util.List;
 @Schema(name = "public")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -35,10 +36,17 @@ public class User {
     private String role;
 
     @OneToOne(mappedBy = "pg_user", cascade = CascadeType.ALL)
-    private Basket basket;
+    private Cart cart;
 
     @OneToMany(mappedBy = "pg_user", cascade = CascadeType.ALL)
     private List<Progress> progressList;
+
+    @OneToMany(mappedBy = "pg_user", cascade = CascadeType.ALL)
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "pg_user", cascade = CascadeType.ALL)
+    // Поле в таблице прогресса, которое ссылается на пользователя
+    private Lesson lesson;
 
     public Long getId() {
         return id;

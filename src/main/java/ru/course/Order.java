@@ -2,10 +2,7 @@ package ru.course;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
@@ -15,13 +12,15 @@ import java.time.LocalDateTime;
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "price")
     private BigInteger price;
 
-    @Column(name = "pg_user")
-    private int pgUser;
+    @ManyToOne
+    @JoinColumn(name = "pg_user") // Поле в таблице Order, которое ссылается на пользователя
+    private User user;
 
     @Column(name = "date_purchase")
     private LocalDateTime datePurchase;
@@ -42,13 +41,6 @@ public class Order {
         this.price = price;
     }
 
-    public int getPgUser() {
-        return pgUser;
-    }
-
-    public void setPgUser(int pgUser) {
-        this.pgUser = pgUser;
-    }
 
     public LocalDateTime getDatePurchase() {
         return datePurchase;
@@ -56,5 +48,13 @@ public class Order {
 
     public void setDatePurchase(LocalDateTime datePurchase) {
         this.datePurchase = datePurchase;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

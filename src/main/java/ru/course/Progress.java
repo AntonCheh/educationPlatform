@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Progress {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "percent_done")
@@ -39,13 +40,6 @@ public class Progress {
         this.percentDone = percentDone;
     }
 
-    public int getPgUser() {
-        return pgUser;
-    }
-
-    public void setPgUser(int pgUser) {
-        this.pgUser = pgUser;
-    }
 
     public Lesson getLesson() {
         return lesson;

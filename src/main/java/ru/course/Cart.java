@@ -6,25 +6,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "basket")
+@Table(name = "cart")
 @Schema(name = "public")
-public class Basket {
+public class Cart {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "pg_user") // Поле в таблице basket, которое ссылается на пользователя
+    @JoinColumn(name = "pg_user") // Поле в таблице cart, которое ссылается на пользователя
     private User user;
-
-    @Column(name = "course")
-    private Course course;
-
 
     @ManyToMany
     @JoinTable(
-            name = "basket_course",
-            joinColumns = @JoinColumn(name = "basket_id"),
+            name = "cart_course",
+            joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private List<Course> courses;

@@ -2,10 +2,7 @@ package ru.course;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "material")
@@ -22,6 +19,7 @@ public class Material {
     private char levelDifficulty;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "material_id")
     private Long id;
 

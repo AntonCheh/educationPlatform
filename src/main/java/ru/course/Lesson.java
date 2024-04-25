@@ -11,60 +11,66 @@ import java.util.List;
 public class Lesson {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   @Column (name = "Lesson")
-   private char lesson;
+    @Column(name = "Lesson")
+    private char lesson;
 
-   @Column(name = "describe")
-   private String describe;
+    @Column(name = "describe")
+    private String describe;
 
-   @Column (name = "pg_user")
-   private int pgUser;
+    @ManyToOne
+    @JoinColumn(name = "pg_user") // Поле в таблице прогресса, которое ссылается на пользователя
+    private User user;
 
-   @Column(name = "difficulty")
-   private int difficulty;
+    @ManyToOne
+    @JoinColumn(name = "course_id") // Поле в таблице прогресса, которое ссылается на пользователя
+    private Course course;
 
-   @OneToMany(mappedBy = "lesson")
-   private List<Progress> progressList;
+    @ManyToOne
+    @JoinColumn(name = "material_id") // Поле в таблице прогресса, которое ссылается на пользователя
+    private Material material;
 
-   public Long getId() {
-      return id;
-   }
+    @OneToMany(mappedBy = "lesson")
+    private List<Progress> progressList;
 
-   public void setId(Long id) {
-      this.id = id;
-   }
+    public Long getId() {
+        return id;
+    }
 
-   public char getLesson() {
-      return lesson;
-   }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-   public void setLesson(char lesson) {
-      this.lesson = lesson;
-   }
+    public char getLesson() {
+        return lesson;
+    }
 
-   public String getDescribe() {
-      return describe;
-   }
+    public void setLesson(char lesson) {
+        this.lesson = lesson;
+    }
 
-   public void setDescribe(String describe) {
-      this.describe = describe;
-   }
+    public String getDescribe() {
+        return describe;
+    }
 
-   public int getPgUser() {
-      return pgUser;
-   }
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
 
-   public void setPgUser(int pgUser) {
-      this.pgUser = pgUser;
-   }
+    public User getUser() {
+        return user;
+    }
 
-   public int getDifficulty() {
-      return difficulty;
-   }
+    public void setUser(User User) {
+    }
 
-   public void setDifficulty(int difficulty) {
-      this.difficulty = difficulty;
-   }
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setDifficulty(Material material) {
+        this.material = material;
+    }
 }
